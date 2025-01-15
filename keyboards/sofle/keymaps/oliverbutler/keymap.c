@@ -84,37 +84,70 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 };
 
 
-static void render_status(void) {
-    oled_set_cursor(0, 0);
-    oled_write_P(PSTR("Sofle\n"), false);
+// Low poly leaf logo - 32x32 pixels
+static const char PROGMEM leaf_logo[] = {
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x80,
+    0x80, 0xC0, 0xC0, 0xE0, 0xE0, 0xF0, 0x70, 0x38,
+    0x18, 0x1C, 0x0C, 0x06, 0x03, 0x03, 0x01, 0x01,
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+    0x00, 0x00, 0x00, 0xE0, 0xF0, 0xF8, 0xFC, 0xFE,
+    0xFF, 0x7F, 0x3F, 0x1F, 0x0F, 0x07, 0x03, 0x01,
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+    0x00, 0x3F, 0x7F, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF,
+    0xFF, 0xFE, 0xFC, 0xF8, 0xF0, 0xE0, 0xC0, 0x80,
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+    0x00, 0x00, 0x00, 0x00, 0x01, 0x03, 0x07, 0x0F,
+    0x1F, 0x3F, 0x7F, 0xFF, 0xFE, 0xFC, 0xF8, 0xF0,
+    0xE0, 0xC0, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00,
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00
+};
 
-    // Layer status
-    oled_set_cursor(2, 0);
+static void render_layer_state(void) {
+    oled_set_cursor(0, 0);
+    oled_write_P(PSTR("Layer"), false);
+    oled_set_cursor(0, 1);
+    oled_write_P(PSTR("-----"), false);
+    oled_set_cursor(0, 2);
+
     switch (get_highest_layer(layer_state)) {
         case _QWERTY:
-            oled_write_P(PSTR("NORMAL\n"), false);
+            oled_write_P(PSTR("BASE "), false);
             break;
         case _LOWER:
-            oled_write_P(PSTR("LOWER\n"), false);
+            oled_write_P(PSTR("LOWER"), false);
             break;
         case _RAISE:
-            oled_write_P(PSTR("ARROW\n"), false);
+            oled_write_P(PSTR("RAISE"), false);
             break;
         case _ADJUST:
-            oled_write_P(PSTR("ADJUST\n"), false);
+            oled_write_P(PSTR("ADJ  "), false);
+            break;
+        case _ARROW:
+            oled_write_P(PSTR("ARROW"), false);
             break;
         default:
-            oled_write_P(PSTR("Undefined\n"), false);
+            oled_write_P(PSTR("?????"), false);
     }
+}
+
+static void render_leaf_logo(void) {
+    oled_write_P(PSTR("Sofle"), false);
+    oled_set_cursor(0, 1);
+    oled_write_raw_P(leaf_logo, sizeof(leaf_logo));
 }
 
 bool oled_task_user(void) {
     if (is_keyboard_master()) {
-        render_status();
+        // Left side - Layer status
+        render_layer_state();
+    } else {
+        // Right side - Logo
+        render_leaf_logo();
     }
     return false;
 }
-
 
 bool encoder_update_user(uint8_t index, bool clockwise) {
     if (index == 0) {
