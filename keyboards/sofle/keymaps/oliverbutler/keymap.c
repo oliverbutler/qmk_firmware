@@ -2,6 +2,8 @@
 // SPDX-License-Identifier: GPL-2.0-or-later
 #include QMK_KEYBOARD_H
 
+static bool key_pressed = false;
+
 enum sofle_layers {
     /* _M_XYZ = Mac Os, _W_XYZ = Win/Linux */
     _QWERTY,
@@ -133,7 +135,50 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   )
 };
 
+
+static void render_status(void) {
+    // Layer status
+    oled_set_cursor(0, 0);
+    switch (get_highest_layer(layer_state)) {
+        case _QWERTY:
+            oled_write_P(PSTR("QWERTY\n"), false);
+            break;
+        case _COLEMAK:
+            oled_write_P(PSTR("COLEMAK\n"), false);
+            break;
+        case _LOWER:
+            oled_write_P(PSTR("LOWER\n"), false);
+            break;
+        case _RAISE:
+            oled_write_P(PSTR("RAISE\n"), false);
+            break;
+        case _ADJUST:
+            oled_write_P(PSTR("ADJUST\n"), false);
+            break;
+        default:
+            oled_write_P(PSTR("Undefined\n"), false);
+    }
+
+    // Key press status
+    oled_set_cursor(0, 1);
+    if (key_pressed) {
+        oled_write_P(PSTR("KEY PRESSED"), false);
+    } else {
+        oled_write_P(PSTR("          "), false);
+    }
+}
+
+bool oled_task_user(void) {
+    if (is_keyboard_master()) {
+        render_status();
+    }
+    return false;
+}
+
+
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+    key_pressed = record->event.pressed;
+
     switch (keycode) {
         case KC_PRVWD:
             if (record->event.pressed) {
