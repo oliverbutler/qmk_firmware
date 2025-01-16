@@ -1,1 +1,4 @@
 TRI_LAYER_ENABLE = yes
+
+SOFLE_VAR_1 := $(shell echo $$SOFLE_VAR_1)
+CFLAGS += -DSOFLE_VAR_1=\"$(SOFLE_VAR_1)\"
