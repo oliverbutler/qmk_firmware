@@ -1,7 +1,5 @@
 #include QMK_KEYBOARD_H
 
-// Configure TAPPING_TERM
-#define TAPPING_TERM 200
 // Prevent normal rollover on alphas from accidentally triggering mods
 #define IGNORE_MOD_TAP_INTERRUPT
 // Enable rapid switch from tap to hold, disables double tap hold
@@ -68,19 +66,19 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 //    ┌─────┬─────┬─────┬─────┬─────┬─────┐               ┌─────┬─────┬─────┬─────┬─────┬─────┐
 //    │     │     │     │     │     │     │               │     │     │     │     │     │     │
 //    ├─────┼─────┼─────┼─────┼─────┼─────┤               ├─────┼─────┼─────┼─────┼─────┼─────┤
-//    │     │  _  │  <  │  >  │  "  │  .  │               │  &  │  :  │  [  │  ]  │  -  │     │
+//    │     │  _  │  <  │  >  │  "  │  .  │               │  &  │  :  │  [  │  ]  │  @  │     │
 //    ├─────┼─────┼─────┼─────┼─────┼─────┤               ├─────┼─────┼─────┼─────┼─────┼─────┤
 //    │     │  !  │  -  │  +  │  =  │  #  │               │  |  │  .  │  (  │  )  │  ?  │     │
 //    ├─────┼─────┼─────┼─────┼─────┼─────┼─────┐   ┌─────┼─────┼─────┼─────┼─────┼─────┼─────┤
-//    │     │     │  /  │  *  │  \  │  %  │     │   │     │  ~  │  $  │  {  │  }  │  @  │     │
+//    │     │     │  /  │  *  │  \  │  %  │     │   │     │  ~  │  $  │  {  │  }  │     │     │
 //    └─────┴─────┼─────┼─────┼─────┼─────┼─────┤   ├─────┼─────┼─────┼─────┼─────┼─────┴─────┘
 //                │     │     │     │     │     │   │     │     │     │     │     │
 //                └─────┴─────┴─────┴─────┴─────┘   └─────┴─────┴─────┴─────┴─────┘
 [_SYMBOLS] = LAYOUT(
   _______ , _______ , _______ , _______ , _______ , _______ ,                         _______ , _______ , _______ , _______ , _______ , _______,
-  _______ , KC_UNDS , KC_LABK , KC_RABK , KC_DQUO , KC_DOT  ,                         KC_AMPR , KC_COLN , KC_LBRC , KC_RBRC , KC_MINS , _______,
+  _______ , KC_UNDS , KC_LABK , KC_RABK , KC_DQUO , KC_DOT  ,                         KC_AMPR , KC_COLN , KC_LBRC , KC_RBRC , KC_AT   , _______,
   _______ , KC_EXLM , KC_MINS , KC_PLUS , KC_EQL  , KC_HASH ,                         KC_PIPE , KC_DOT  , KC_LPRN , KC_RPRN , KC_QUES , _______,
-  _______ , _______ , KC_SLSH , KC_ASTR , KC_BSLS , KC_PERC , _______ ,     _______ , KC_TILD , KC_DLR  , KC_LCBR , KC_RCBR , KC_AT   , _______,
+  _______ , _______ , KC_SLSH , KC_ASTR , KC_BSLS , KC_PERC , _______ ,     _______ , KC_TILD , KC_DLR  , KC_LCBR , KC_RCBR , _______ , _______,
                       _______ , _______ , _______ , _______ , _______ ,     _______ , _______ , _______ , _______ , _______
 )
 };
