@@ -35,14 +35,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 //    ├──────┼──────────┼──────────┼──────────┼──────────┼─────┼──────────┐   ┌───────────────────┼──────┼──────────┼──────────┼──────────┼──────────┼────┤
 //    │ lsft │    z     │    x     │    c     │    v     │  b  │   mute   │   │       mply        │  n   │    m     │    ,     │    .     │    /     │ no │
 //    └──────┴──────────┼──────────┼──────────┼──────────┼─────┼──────────┤   ├───────────────────┼──────┼──────────┼──────────┼──────────┼──────────┴────┘
-//                      │    no    │    no    │    no    │ spc │ MO(_NUM) │   │ LT(_SYMBOLS, ent) │ bspc │    no    │    no    │    no    │
+//                      │    no    │    no    │   GAME   │ spc │ MO(_NUM) │   │ LT(_SYMBOLS, ent) │ bspc │    no    │    no    │    no    │
 //                      └──────────┴──────────┴──────────┴─────┴──────────┘   └───────────────────┴──────┴──────────┴──────────┴──────────┘
 [_QWERTY] = LAYOUT(
   KC_GRV  , KC_1        , KC_2        , KC_3        , KC_4        , KC_5   ,                                       KC_6    , KC_7        , KC_8        , KC_9        , KC_0           , KC_MINS,
   KC_TAB  , KC_Q        , KC_W        , KC_E        , KC_R        , KC_T   ,                                       KC_Y    , KC_U        , KC_I        , KC_O        , KC_P           , KC_RBRC,
   KC_ESC  , CMD_T(KC_A) , ALT_T(KC_S) , SFT_T(KC_D) , CTL_T(KC_F) , KC_G   ,                                       KC_H    , CTL_T(KC_J) , SFT_T(KC_K) , ALT_T(KC_L) , CMD_T(KC_SCLN) , KC_QUOT,
   KC_LSFT , KC_Z        , KC_X        , KC_C        , KC_V        , KC_B   , KC_MUTE  ,     KC_MEDIA_PLAY_PAUSE  , KC_N    , KC_M        , KC_COMM     , KC_DOT      , KC_SLSH        , XXXXXXX,
-                          TG(_GAME)   , XXXXXXX     , XXXXXXX     , KC_SPC , MO(_NUM) ,     LT(_SYMBOLS, KC_ENT) , KC_BSPC , XXXXXXX     , XXXXXXX     , XXXXXXX
+                          XXXXXXX   , XXXXXXX     , TG(_GAME)   , KC_SPC , MO(_NUM) ,     LT(_SYMBOLS, KC_ENT) , KC_BSPC , XXXXXXX     , XXXXXXX     , XXXXXXX
 ),
 
 //    ┌─────────┬─────┬─────┬─────┬─────┬─────┐                    ┌──────┬──────┬──────┬──────┬─────┬─────┐
@@ -85,7 +85,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 ,
 
 //    ┌──────┬──────────┬──────────┬──────────┬──────────┬─────┐                                  ┌──────┬──────────┬──────────┬──────────┬──────────┬────┐
-//    │  `   │    1     │    2     │    3     │    4     │  5  │                                  │  6   │    7     │    8     │    9     │    0     │ -  │
+//    │ esc  │    1     │    2     │    3     │    4     │  5  │                                  │  6   │    7     │    8     │    9     │    0     │ -  │
 //    ├──────┼──────────┼──────────┼──────────┼──────────┼─────┤                                  ├──────┼──────────┼──────────┼──────────┼──────────┼────┤
 //    │ tab  │    q     │    w     │    e     │    r     │  t  │                                  │  y   │    u     │    i     │    o     │    p     │ ]  │
 //    ├──────┼──────────┼──────────┼──────────┼──────────┼─────┤                                  ├──────┼──────────┼──────────┼──────────┼──────────┼────┤
@@ -96,11 +96,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 //                      │    no    │    no    │    no    │ spc │    no    │   │        ent        │ bspc │    no    │    no    │    no    │
 //                      └──────────┴──────────┴──────────┴─────┴──────────┘   └───────────────────┴──────┴──────────┴──────────┴──────────┘
 [_GAME] = LAYOUT(
-  KC_GRV  , KC_1        , KC_2        , KC_3        , KC_4        , KC_5   ,                                       KC_6    , KC_7        , KC_8        , KC_9        , KC_0           , KC_MINS,
+  KC_ESC  , KC_1        , KC_2        , KC_3        , KC_4        , KC_5   ,                                       KC_6    , KC_7        , KC_8        , KC_9        , KC_0           , KC_MINS,
   KC_TAB  , KC_Q        , KC_W        , KC_E        , KC_R        , KC_T   ,                                       KC_Y    , KC_U        , KC_I        , KC_O        , KC_P           , KC_RBRC,
   KC_LSFT , KC_A        , KC_S        , KC_D        , KC_F        , KC_G   ,                                       KC_H    , KC_J        , KC_K        , KC_L        , KC_SCLN        , KC_QUOT,
   KC_LCTL , KC_Z        , KC_X        , KC_C        , KC_V        , KC_B   , KC_MUTE  ,     KC_MEDIA_PLAY_PAUSE  , KC_N    , KC_M        , KC_COMM     , KC_DOT      , KC_SLSH        , XXXXXXX,
-                          TG(_GAME)   , XXXXXXX     , XXXXXXX     , KC_SPC , XXXXXXX ,      KC_ENT                 , KC_BSPC , XXXXXXX     , XXXXXXX     , XXXXXXX
+                          XXXXXXX   , XXXXXXX     , TG(_GAME)     , KC_SPC , XXXXXXX ,      KC_ENT                 , KC_BSPC , XXXXXXX     , XXXXXXX     , XXXXXXX
 )
 };
 
